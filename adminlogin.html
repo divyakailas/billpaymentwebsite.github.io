@@ -3,14 +3,13 @@
 <title>LOGIN form</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/loginstyle.css">
-<link rel="stylesheet" type="text/css">
 <style>
 body {
-  background-image: url("image/bac4.jpg");
+  background-image: url("image/bac2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
+  position: relative;
 }
 
 
@@ -32,18 +31,15 @@ body {
     border-color: #8B008B;
     border-style: solid;
 	}
-	
 	.squarebox{
-		height:450px;
+		height:500px;
 		width:500px;
 		background-color:#0d0d0d;
 		margin :65px auto;
-		opacity:.8;
+		opacity:.7;
 		color:white;
 		padding:20px;
 	}
-	
-	
 </style>
 </head>
 <body>
@@ -103,14 +99,13 @@ if (isset($_REQUEST['LOGIN']))
     else
     {
 
-	$query = mysqli_query($con,"select * from reg1 where username='".$_REQUEST['username']."' &&  password='".$_REQUEST['password']."'")or die ("sql error" .mysqli_error());
+	$query = mysqli_query($con,"select * from admin where username='".$_REQUEST['username']."' &&  password='".$_REQUEST['password']."'")or die ("sql error" .mysqli_error());
 	$run_query=mysqli_fetch_array($query);
 	$total = mysqli_num_rows($query);
 	<!--if($total>0)
 	{
-		$SESSION['loguser']=$row['email'];
 		echo "You have logged in successfully";
-		header("Location:homebill.php");
+		header("Location:adminhome.php");
 		
 	}
 	else
@@ -124,22 +119,26 @@ if (isset($_REQUEST['LOGIN']))
 
 <br><br><br>
 <div class="squarebox">
-<center><h2><div class="text-white">LOGIN</div></h2></center>
-
-<form action="loginform.php" method="POST">
 
 
+<div class="card-title text-center mt-3">
+<img src="image/login.png" width="150px" height="150px">
+</div>
+<div class="form" >
+<form action="adminlogin.php" method="POST">
 
 
+
+<center><h2><div class="text-danger">LOGIN</div></h2></center>
 
 <label for="username"><b><div class="text-white">UserName</div></b></label>
-<input class="form-control" type="text" name="username" placeholder="UserName" required="Please enter register username" title="Please enter register username">
+<input class="form-control" type="text" name="username" placeholder="UserName" required="" title="please enter valid admin username">
 
 
 <label for="password"><b><div class="text-white">Password</div></b></label>
-<input class="form-control" type="password" name="password" placeholder="password" required="please enter registered password"  title="please enter registered password">
+<input class="form-control" type="password" name="password" placeholder="password" required="" title="please enter valid admin password">
+		&nbsp;&nbsp;			
 					
-	&nbsp;&nbsp;				
 <center><input class="btn btn-primary" type="submit" name="LOGIN" value="submit"></center>
 
 
@@ -149,9 +148,8 @@ if (isset($_REQUEST['LOGIN']))
 
 
 </form>
-<p><center>NOT YET REGISTERED? <a href='registerdivya.php'><div class="text-warning">Register here</div></a></center></p>
-</div>
 
-</section>
+</div> 
+<section>
 </body>
 </html>
